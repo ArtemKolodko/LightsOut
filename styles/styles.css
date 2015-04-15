@@ -1,0 +1,140 @@
+html, body {
+    margin: 0px;
+    font-family: "AtlasTypewriterRegular", "Andale Mono", "Consolas", "Lucida Console", "Menlo", "Luxi Mono", monospace;
+    background: #f0f0f0 url("../img/noise.gif") repeat -70% 0;
+}
+
+.center {
+    margin: 20px auto;
+    width: 592px;
+}
+
+.fieldWrapper {
+    position: relative;
+}
+
+.gameField {
+    border: 1px solid gainsboro;
+    margin: 25px auto;
+    width: 560px;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.gameOver {
+    position: absolute;
+    top: 270px;
+    padding: 15px;
+    background: white;
+    opacity: 0.7;
+    font-size: 26px;
+    left: 87px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    width: 110px;
+    height: 110px;
+    display: table-cell;
+    background-color: #383233;
+    border: 1px solid gainsboro;
+    color: white;
+    cursor: pointer;
+}
+
+.cell:hover {
+    opacity: 0.8;
+}
+
+
+.cell_filled {
+    background-color: #16c72e;
+}
+
+.title {
+    font-size: 42px;
+    font-weight: bold;
+    margin: 0;
+    display: block;
+    float: left;
+}
+
+.scores {
+    float: right;
+}
+
+.level {
+    margin-right: 9px;
+    font-weight: bold;
+}
+
+.turns {
+    margin-right: 9px;
+}
+
+.level, .time, .turns {
+    display: inline-block;
+}
+
+.levelNumber {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: -5px;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: text-bottom;
+}
+
+.turnsNumber {
+    display: inline-block;
+    margin-left: -5px;
+}
+
+.intro {
+    float: left;
+    line-height: 34px;
+    margin-bottom: 0;
+}
+
+.above-game {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.above-game:after, .header:after  {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.restart-button {
+    background: #F04B56;
+    border-radius: 3px;
+    padding: 0 20px;
+    text-decoration: none;
+    color: #f9f6f2;
+    height: 40px;
+    line-height: 42px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    float: right;
+}
+
+.restart-button:active {
+    background: #BB434B;
+}
+
+.howToPlay {
+    margin-top: 45px;
+}
