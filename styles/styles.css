@@ -22,16 +22,32 @@ html, body {
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 }
 
-.gameOver {
+.gameOver, .gameOverComplete {
     position: absolute;
     top: 270px;
-    padding: 15px;
+    padding: 15px 0px;
     background: white;
-    opacity: 0.7;
-    font-size: 26px;
+    opacity: 0.9;
+    font-size: 18px;
     left: 87px;
+    width: 415px;
+    margin: 0px auto;
+    text-align: center;
     border-radius: 3px;
     font-weight: bold;
+}
+
+.gameOverComplete {
+
+}
+
+.startNextLevel {
+    color: green;
+    cursor: pointer;
+}
+
+.startNextLevel:hover {
+    text-decoration: underline;
 }
 
 .row {
@@ -71,7 +87,74 @@ html, body {
 
 .level {
     margin-right: 9px;
+}
+
+.level .currentLevel {
+    cursor: pointer;
+    padding-bottom: 3px;
     font-weight: bold;
+    position: relative;
+    border-bottom: 1px dashed;
+}
+
+.level .currentLevel:hover .allLevels{
+    visibility: visible;
+}
+
+.level .allLevels {
+    position: absolute;
+    top: 25px;
+    background: #333;
+    color: white;
+    z-index: 100;
+    width: 130px;
+    text-align: center;
+    border: 1px solid white;
+    box-shadow: 4px 2px 5px rgba(0,0,0,0.2);
+    visibility: hidden;
+}
+
+.level .allLevels ul {
+    list-style: none;
+    display: inline;
+    padding: 0px;
+    margin: 0px;
+}
+
+.level .allLevels ul li {
+    padding: 2px;
+    font-weight: normal;
+    position: relative;
+}
+
+
+.level .allLevels ul li:not(.disabled) {
+    cursor: pointer;
+}
+
+.level .allLevels ul li.disabled {
+    color: gray;
+}
+
+.level .allLevels ul li.current {
+
+}
+
+.level .allLevels ul li.current:before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 3px;
+    background: white;
+    border: 1px solid white;
+    background-size: 5px;
+    position: absolute;
+    left: 9px;
+    top: 9px;
+}
+
+.level .allLevels ul li:hover:not(.disabled) {
+    background: #F04B56;
 }
 
 .turns {
@@ -129,6 +212,7 @@ html, body {
     display: block;
     text-align: center;
     float: right;
+    padding-bottom: 2px;
 }
 
 .restart-button:active {

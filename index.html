@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/levels.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/actuator.js"></script>
     <script src="js/field.js"></script>
@@ -17,15 +19,32 @@
     <div class="header">
         <div class="title">Lights Out</div>
         <div class="scores">
-            <div class="level">LEVEL <div class="levelNumber">1</div></div>
-            <div class="turns">Turns <div class="turnsNumber">0</div></div>
+            <div class="level">
+                <div class="currentLevel">Уровень <div class="levelNumber">1</div>
+                    <div class="allLevels">
+                        <ul>
+                            <li class="disabled" data-level="8">Уровень 9</li>
+                            <li class="disabled" data-level="7">Уровень 8</li>
+                            <li class="disabled" data-level="6">Уровень 7</li>
+                            <li class="disabled" data-level="5">Уровень 6</li>
+                            <li class="disabled" data-level="4">Уровень 5</li>
+                            <li class="disabled" data-level="3">Уровень 4</li>
+                            <li class="disabled" data-level="2">Уровень 3</li>
+                            <li class="disabled" data-level="1">Уровень 2</li>
+                            <li class="disabled" data-level="0">Уровень 1</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="turns">Ходов <div class="turnsNumber">0</div></div>
             <div class="time">00:00</div>
         </div>
 
     </div>
     <div class="above-game">
-        <div class="intro">Switch all the lights off!</div>
-        <div class="restart-button">New Game</div>
+        <div class="intro">Выключи все клетки!</div>
+        <div class="restart-button">Начать заново</div>
     </div>
 
 
@@ -33,17 +52,18 @@
         <div class="gameField">
 
         </div>
-        <div class="gameOver">Game Over! Congratulations!</div>
+        <div class="gameOver">Уровень <span class="passedLevel"></span> пройден! <span class="startNextLevel">Следующий уровень &#8680;</span></div>
+        <div class="gameOverComplete">Поздравляем! Вы прошли игру.</span></div>
     </div>
 
     <div class="howToPlay">
-        <p>The game consists of a 5 by 5 grid of lights. When the game starts, a random number or a stored pattern of these lights is switched on.</p>
-        <p>Pressing any of the lights will toggle it and the four adjacent lights.</p>
-        <p>The goal of the puzzle is to switch all the lights off, preferably in as few button presses as possible.</p>
+        <p>Как только игра начинается, на поле случайным образом несколько элементов переходят в состояние «<span style="color:#16c72e;font-weight: bold;">включено</span>».</p>
+        <p>Нажатие на любую клетку поля изменит состояние этой и четырёх соседних клеток.</p>
+        <p>Цель игры — перевести всё поле в состояние «<span style="color:#383233;font-weight: bold;">выключено</span>».</p>
     </div>
 
     <div class="copy">
-        <p>Author: Artem Kolodko, 2015 || temakolodko@gmail.com</p>
+        <p>Artem Kolodko, 2015 || temakolodko@gmail.com</p>
     </div>
 
 </div>

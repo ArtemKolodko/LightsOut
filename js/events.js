@@ -1,20 +1,22 @@
 $(document).ready(function() {
     game = new GameController(5);
-    game.newGame();
+    game.restartGame();
 });
 
 $(document).on("click", ".cell", function() {
     var x = $(this).attr("data-x");
     var y = $(this).attr("data-y");
     game.cellClicked(x, y);
-
-    if(game.timer.isRunning()) {
-
-    } else {
-        game.timer.start();
-    }
 });
 
 $(document).on("click", ".restart-button", function() {
-    game.newGame();
+    game.restartGame();
+});
+
+$(document).on("click", ".startNextLevel", function() {
+    game.startNextLevel();
+});
+
+$(document).on("click", ".allLevels ul li:not(.disabled)", function() {
+   game.startLevel($(this).attr("data-level"));
 });

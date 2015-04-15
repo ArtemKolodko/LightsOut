@@ -1,16 +1,36 @@
-function GameField(size) {
+function GameField(size, level) {
     this.size = size;
     this.map = [];
     this.turns = [];
+
+    this.currentLevel = levels[level];
 
     this.cache = {
         wrapper: $(".gameField")
     };
 };
 
-GameField.prototype.initMap = function() {
-    var filledNumber = Math.round(Math.random()*5 +3);
-    var filledCells = [];
+GameField.prototype.generateLevel = function(depth) {
+    var x, y;
+
+    this.clearMap();
+
+    while(depth > 0) {
+        x = Math.floor((Math.random() * 5));
+        y = Math.floor((Math.random() * 5));
+        console.log("generated point ", x, y);
+        this.addPoint(x, y);
+        depth--;
+    }
+
+    this.drawBoard();
+
+    console.log(this.turns, JSON.stringify(this.turns));
+
+};
+
+GameField.prototype.clearMap = function() {
+    this.turns = [];
 
     for(var i=0; i < this.size; i++) {
         this.map[i] = [];
@@ -18,13 +38,20 @@ GameField.prototype.initMap = function() {
             this.map[i][j] = EMPTY;
         }
     }
+};
 
-    while(filledNumber > 0) {
-        this.map[Math.floor((Math.random() * 5))][Math.floor((Math.random() * 5))] = FILLED;
-        filledNumber--;
+GameField.prototype.initMap = function(level) {
+    this.currentLevel = levels[level];
+    this.clearMap();
+
+    var turns = JSON.parse(this.currentLevel.map);
+
+    console.log("-- field: load level", level, ", turns: ", turns);
+
+    for(var i=0; i < turns.length; i++) {
+        this.addPoint(turns[i].x, turns[i].y);
     }
 
-    this.turns = [];
     this.drawBoard();
 };
 
@@ -49,15 +76,17 @@ GameField.prototype.findNeighborCells = function(x, y) {
 };
 
 GameField.prototype.changeOnClick = function(x, y) {
-    var self = this;
-
     if(this.isGameOver()) return;
+    this.addPoint(x, y);
+    this.turns.push({x: x, y: y});
+};
 
+GameField.prototype.addPoint = function(x, y) {
+    var self = this;
     var neighbors = this.findNeighborCells(x, y);
     neighbors.forEach(function(ncell) {
         self.map[ncell.x][ncell.y]^=1;
     });
-    this.turns.push({x: x, y: y});
     this.drawBoard();
 };
 
@@ -75,8 +104,8 @@ GameField.prototype.drawBoard = function() {
     this.map.forEach(function(line, lineIndex) {
         self.cache.wrapper.append("<div class='row'>");
         line.forEach(function(cell, cellIndex) {
-            var cellClass = self.map[lineIndex][cellIndex] == EMPTY ? "cell" : "cell cell_filled";
-            self.cache.wrapper.append("<div class='"+cellClass+"' data-x="+lineIndex+" data-y="+cellIndex+"></div>")
+            var cellClass = self.map[cellIndex][lineIndex] == EMPTY ? "cell" : "cell cell_filled";
+            self.cache.wrapper.append("<div class='"+cellClass+"' data-x="+cellIndex+" data-y="+lineIndex+"></div>")
         })
         self.cache.wrapper.append("</div>");
     })
